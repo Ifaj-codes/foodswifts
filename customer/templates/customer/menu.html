@@ -13,25 +13,29 @@
     <div class="container">
         <form method="POST">
             {% csrf_token %}
-           
-            {% for item in items %}
-            <div class="row mb-3 border-bottom pb-3 align-items-center">
-                <div class="col-md-2">
-                    <img src="{{ item.image }}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                </div>
-                <div class="col-md-8">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="items[]" value="{{ item.id }}">
-                        <label class="form-check-label font-weight-bold">
-                            {{ item.name }}
-                        </label>
-                    </div>
-                </div>
-                <div class="col-md-2 font-weight-bold">
-                    {{ item.price }}
-                </div>
-            </div>
-            {% endfor %}
+        <div class="row">
+    {% for item in items %}
+    <div class="col-md-4 mb-4 text-center">
+      
+        <img src="{{ item.image}}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+        
+       
+        <div class="form-check mt-3 d-flex justify-content-center align-items-center">
+            <input class="form-check-input" type="checkbox" name="items[]" value="{{ item.id }}" style="margin-right: 10px; position: relative;">
+            <label class="form-check-label font-weight-bold">{{ item.name }}</label>
+        </div>
+        
+     
+        <div class="font-weight-bold mt-2 text-secondary">
+            Price: {{ item.price }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+            <br>
+<a href="{% url 'payment' %}" style="background-color: #e2136e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+    Pay with bKash
+</a>
             <button type="submit" class="btn btn-dark mt-3 px-5">PLACE ORDER!</button>
         </form>
     </div>

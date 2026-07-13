@@ -1,0 +1,14 @@
+<h2>Pay with bKash</h2>
+
+{% if messages %}
+    {% for message in messages %}
+        <h3 style="color: green;">{{ message }}</h3>
+    {% endfor %}
+{% else %}
+<form action="{% url 'payment' %}" method="POST">
+        {% csrf_token %}
+        <label>Enter bKash Number:</label><br>
+        <input type="text" name="bkash_number" placeholder="01XXXXXXXXX" required><br><br>
+        <button type="submit">Confirm Payment</button>
+    </form>
+{% endif %}
